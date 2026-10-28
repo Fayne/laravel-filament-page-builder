@@ -85,7 +85,7 @@ ContentBuilder::make('components')->definitions(
 
 `rules`、`creationRules`、`updateRules` 对应通用/创建/更新操作。Text 的 readonly 使用服务端原值保护；其它字段按各自支持范围处理。`help` 支持可信管理内容的 HTML 提示。
 
-`sensitive` 不属于支持类型，旧定义中的值不公开输出，编辑时会阻止不兼容保存，不自动删除历史数据。缺失区块定义、递归 Widget 或未实现的类型不能当作普通文本静默保存。详细选项见 [字段兼容清单](docs/field-compatibility.md)、[字段定义管理](docs/field-definition-management.md)。
+`sensitive` 不属于支持类型，旧定义中的值不公开输出，编辑时会阻止不兼容保存，不自动删除历史数据。缺失区块定义、递归 Widget 或未实现的类型不能当作普通文本静默保存。字段选项以对应 resolver 实现和 Page/Menu 的字段管理界面为准。
 
 ## 4. 存储结构与公开输出
 
@@ -161,7 +161,7 @@ HTTP 字段保存配置；普通编辑和保存不发送请求。测试请求要
 
 实体编辑通过配置模型与标签白名单及记录授权检索；公开实体展开默认关闭，开启 `resolve_entities` 后仍需配置允许的模型/字段。级联外部源由独立 `filament-cascade.sources` 精确白名单管理，服务端校验父子路径。默认不允许管理员输入任意模型类或把任意 URL 当作可信来源。
 
-更多配置见 [复杂字段](docs/complex-fields.md)、[Advanced Text](docs/advanced-text.md)。
+文本字段的独立用法见 [Advanced Text](../laravel-filament-advanced-text/README.md)。
 
 ## 7. 中英文与自定义字段
 
@@ -181,6 +181,8 @@ node --test tests/Browser/*.test.cjs
 ```
 
 字段包有各自测试；Advanced Text 的交互测试在其所属包执行。上线前用真实持久化内容验证不修改保存、复制、嵌套、排序与公开输出；验证媒体授权、图片 URL、语言/租户/区域隔离，并在受控目标环境验证外部 HTTP。历史复杂 HTML、工具栏和未知字段需按兼容清单评估，不承诺所有旧 Nova 配置都可直接运行。包测试不等于真实浏览器或生产存储验收。
+
+开发包的 `composer.lock` 不提交，允许本地生成并忽略；宿主应用保留自己的部署锁文件。
 
 ## 贡献代码
 

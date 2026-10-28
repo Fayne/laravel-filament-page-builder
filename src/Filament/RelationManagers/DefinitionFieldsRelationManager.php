@@ -40,14 +40,14 @@ abstract class DefinitionFieldsRelationManager extends RelationManager
 
     public function form(Schema $schema): Schema
     {
-        $resource = static::$relatedResource;
+        $resource = static::getRelatedResource();
 
         return $schema->components($resource::fieldFormComponents());
     }
 
     public function table(Table $table): Table
     {
-        $resource = static::$relatedResource;
+        $resource = static::getRelatedResource();
 
         return $table->recordTitleAttribute('title')->columns([
             TextColumn::make('title')->label(__('filament-page-builder::fields.name'))->searchable(),

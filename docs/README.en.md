@@ -85,7 +85,7 @@ Definitions use `name`, `title`, `resolver`, `options`, and `rules`; database fi
 
 `rules`, `creationRules`, and `updateRules` apply to general/create/update operations. Text readonly values are protected by restoring the server-side original; other fields follow their own supported options. `help` supports HTML from trusted administration content.
 
-`sensitive` is not a supported type. Legacy values are excluded from public output and incompatible edits are blocked without deleting historical data. Missing block definitions, recursive widgets, and unimplemented types are not silently saved as plain text. See [field compatibility](field-compatibility.md) and [field definition management](field-definition-management.md) for detailed options (supplementary guides are currently in Chinese).
+`sensitive` is not a supported type. Legacy values are excluded from public output and incompatible edits are blocked without deleting historical data. Missing block definitions, recursive widgets, and unimplemented types are not silently saved as plain text. Refer to the corresponding resolver implementation and Page/Menu field-management screens for detailed options.
 
 ## 4. Storage structure and public output
 
@@ -161,7 +161,7 @@ Only exact HTTPS URLs and configured methods are allowed, without redirects. Pub
 
 Entity editing searches configured model/label allowlists with record authorization. Public entity expansion is disabled by default; enabling `resolve_entities` still requires allowed models/fields. External cascade sources use the separate `filament-cascade.sources` exact allowlist and server-side parent/child validation. Arbitrary administrator-supplied model classes or URLs are not trusted sources by default.
 
-See [complex fields](complex-fields.md) and [Advanced Text](advanced-text.md) for additional configuration (Chinese guides).
+See [Advanced Text](../../laravel-filament-advanced-text/README.md) for standalone text-field usage.
 
 ## 7. Languages and custom fields
 
@@ -181,6 +181,8 @@ node --test tests/Browser/*.test.cjs
 ```
 
 Field packages have their own suites; Advanced Text interaction tests run in its owning package. Before deployment, verify no-change saves, cloning, nesting, ordering, and public output using real persisted samples. Check media authorization, image URLs, language/tenant/region isolation, and external HTTP in a controlled target environment. Assess historical complex HTML, toolbars, and unknown fields against the compatibility guide; not every old Nova configuration is directly supported. Package tests are not real-browser or production-storage acceptance.
+
+The library does not commit `composer.lock`; local generated lock files are ignored. Host applications retain their own deployment lock file.
 
 ## Contributing
 
